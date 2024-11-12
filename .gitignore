@@ -1,0 +1,10 @@
+experiments*
+wandb*
+project_data/downloads*
+project_data/data*
+*egg-info*
+*.npy
+*.pkl
+*.pyc
+*.npy.gz
+*.csv

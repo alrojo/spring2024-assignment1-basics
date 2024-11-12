@@ -1,0 +1,35 @@
+{
+    "model": {
+        "vocab_size": 500,
+        "context_length": 16,
+        "d_model": 16,
+        "d_ff": 64,
+        "num_layers": 3,
+        "num_heads": 4,
+        "attn_pdrop": 0.0,
+        "residual_pdrop": 0.0
+    },
+    "optimizer": {
+        "betas": [0.9, 0.99],
+        "weight_decay": 1e-5,
+        "eps": 1e-8
+    },
+    "lr_max": 5e-4,
+    "lr_min": 1e-4,
+    "T_w": 100,
+    "T_c": 2000,
+    "batch_size": 16,
+    "total_iters": 1234,
+    "checkpoint": "",
+    "train_path": "project_data/data/TinyStoriesV2-GPT4-sample-500/TinyStoriesV2-GPT4-sample-encoded.bin",
+    "valid_path": "project_data/data/TinyStoriesV2-GPT4-sample-500/TinyStoriesV2-GPT4-sample-encoded.bin",
+    "vocab_path": "project_data/data/TinyStoriesV2-GPT4-sample-500/vocab_readable.json",
+    "merges_path": "project_data/data/TinyStoriesV2-GPT4-sample-500/merges_readable.json",
+    "special_tokens": ["<|endoftext|>"],
+    "device": "cpu",
+    "max_l2_norm": 1,
+    "valid_every": 100,
+    "print_every": 25,
+    "checkpoint_every": 500,
+    "wandb": 1
+}
