@@ -31,6 +31,6 @@
     "valid_every": 10000,
     "print_every": 25,
     "checkpoint_every": 500,
-    "wandb": "base_config",
+    "wandb": "lr experiment",
     "ablation": 0
 }

@@ -14,8 +14,8 @@
         "weight_decay": 1e-5,
         "eps": 1e-8
     },
-    "lr_max": 5e-4,
-    "lr_min": 1e-4,
+    "lr_max": 1e-2,
+    "lr_min": 5e-3,
     "T_w": 200,
     "T_c": 15000,
     "batch_size": 64,
@@ -31,6 +31,6 @@
     "valid_every": 10000,
     "print_every": 25,
     "checkpoint_every": 500,
-    "wandb": "base_config",
+    "wandb": "lr experiment",
     "ablation": 0
 }

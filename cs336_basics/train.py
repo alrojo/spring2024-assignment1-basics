@@ -5,7 +5,7 @@ import cs336_basics.utils.data as data
 import cs336_basics.utils.io as io
 import cs336_basics.utils.nn as nn
 from cs336_basics.model import TransformerLM
-from cs336_basics.model import TransformerLM
+from cs336_basics.ablation import TransformerLM_ablation
 from cs336_basics.optimizer import AdamW, lr_schedule
 
 ###
@@ -13,7 +13,7 @@ from cs336_basics.optimizer import AdamW, lr_schedule
 ###
 parser = argparse.ArgumentParser(description="training script for CS336")
 parser.add_argument("--config_name", type=str, help="path to configurations",
-                    default="test")
+                    required=True)
 args = parser.parse_args()
 def load_and_log_configs(config_name):
     config_path = "project_data/configs/%s.json" % config_name
@@ -58,7 +58,10 @@ valid_data = load_and_log_dataloader(config["valid_path"], "validation data", lo
 ###
 # 2.1 Create model
 ###
-model = TransformerLM(**config['model'])
+if config['ablation']:
+    model = TransformerLM_ablation(**config['model'])
+else:
+    model = TransformerLM(**config['model'])
 model.to(config["device"])
 optimizer = AdamW(model.parameters(), **config['optimizer'])
 ###
@@ -79,7 +82,7 @@ if config["checkpoint"]:
 ###
 if config["wandb"]:
     import wandb
-    wandb.init(project=config_name, name=experiment_id)
+    wandb.init(project=config["wandb"], name=config_name)
 
 def run_validation(_model, _dataset, _config, t):
     _model.eval()
@@ -118,9 +121,9 @@ for i in range(config["total_iters"]):
             wandb.log({'train_loss': total_loss, 'lr': lr_i}, step=i)
         logger.info("iter: %d, lr:%.6f, cost:%.4f" % (i, lr_i, total_loss))
         total_loss = 0
-    if ((i % config["valid_every"]) == 0):
+    if (((i+1) % config["valid_every"]) == 0):
         run_validation(model, valid_data, config, i)
-    if ((i % config["checkpoint_every"]) == 0):
+    if (((i+1) % config["checkpoint_every"]) == 0):
         checkpoint_name = "checkpoint_%d" % i
         checkpoint_path = os.path.join(experiment_folder, checkpoint_name) 
         logger.info("saving checkpoint to %s ..." % checkpoint_path)

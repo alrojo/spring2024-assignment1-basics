@@ -32,5 +32,5 @@
     "print_every": 25,
     "checkpoint_every": 500,
     "wandb": "base_config",
-    "ablation": 0
+    "ablation": 1
 }

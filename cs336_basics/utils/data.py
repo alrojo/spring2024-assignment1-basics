@@ -9,8 +9,8 @@ from typing import Dict, Optional, Tuple, Iterable, List
 def make_batch(dataset, batch_starts, context_length, device):
     x_list = [dataset[batch_start:batch_start+context_length] for batch_start in batch_starts] 
     y_list = [dataset[batch_start+1:batch_start+context_length+1] for batch_start in batch_starts] 
-    x = torch.stack([torch.from_numpy(np.copy(x_i)) for x_i in x_list], dim=0)
-    y = torch.stack([torch.from_numpy(np.copy(y_i)) for y_i in y_list], dim=0)
+    x = torch.stack([torch.from_numpy(np.copy(x_i).astype(np.float32)) for x_i in x_list], dim=0)
+    y = torch.stack([torch.from_numpy(np.copy(y_i).astype(np.float32)) for y_i in y_list], dim=0)
     # put on GPU or device of choice
     x, y = x.to(device), y.to(device)
     return x, y 
@@ -73,8 +73,8 @@ def get_batch(
     # make batch, keep everything in torch instead of numpy
     x_list = [dataset[batch_start:batch_start+context_length] for batch_start in batch_starts] 
     y_list = [dataset[batch_start+1:batch_start+context_length+1] for batch_start in batch_starts] 
-    x = torch.stack([torch.from_numpy(np.copy(x_i)) for x_i in x_list], dim=0)
-    y = torch.stack([torch.from_numpy(np.copy(y_i)) for y_i in y_list], dim=0)
+    x = torch.stack([torch.from_numpy(np.copy(x_i).astype(np.float32)) for x_i in x_list], dim=0)
+    y = torch.stack([torch.from_numpy(np.copy(y_i).astype(np.float32)) for y_i in y_list], dim=0)
     # put on GPU or device of choice
     x, y = x.to(device), y.to(device)
     return x, y 
