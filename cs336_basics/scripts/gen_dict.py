@@ -9,7 +9,7 @@ from tests.adapters import run_train_bpe
 # Expected use testing
 # python scripts/gen_tiny_dict.py --input_path data/TinyStoriesV2-GPT4-sample.txt --out_name sample --vocab_size 500
 # Expected use for the Tiny dataset 
-# python scripts/gen_tiny_dict.py --input_path data/TinyStoriesV2-GPT4-sample.txt --out_name TinyStories_10k --vocab_size 10000
+# python scripts/gen_tiny_dict.py --input_path data/TinyStoriesV2-GPT4-sample.txt --vocab_size 10000
 
 parser = argparse.ArgumentParser(description="Supply data file")
 
@@ -21,7 +21,7 @@ args = parser.parse_args()
 
 dataset_name = os.path.splitext(os.path.basename(args.input_path))[0]
 folder_name = "%s-%d" % (dataset_name, args.vocab_size)
-save_folder = "experiments/data/%s" % folder_name
+save_folder = "project_data/data/%s" % folder_name
 if os.path.isdir(save_folder):
     print("%s already exists, exiting ..." % save_folder)
     assert False

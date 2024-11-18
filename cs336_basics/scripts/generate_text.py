@@ -8,7 +8,6 @@ import cs336_basics.utils.nn as nn
 parser = argparse.ArgumentParser(description="generator script for CS336")
 parser.add_argument("--config_name", type=str, help="path to configurations",
                     default="base_config")
-parser.add_argument("--checkpoint_name", type=str, help="path to configurations")
 parser.add_argument("--temp", type=float, help="path to configurations",
                     default=1)
 parser.add_argument("--nucleus", type=float, help="path to configurations",

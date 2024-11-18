@@ -5,9 +5,9 @@ import numpy as np
 
 parser = argparse.ArgumentParser(description="Supply data file")
 parser.add_argument('--save_folder', type=str, help="path to vocab folder",
-                    default="experiments/data/TinyStoriesV2-GPT4-sample-500")
+                    default="project_data/data/TinyStoriesV2-GPT4-sample-500")
 parser.add_argument('--input_path', type=str, help="path to data",
-                    default="experiments/downloads/TinyStoriesV2-GPT4-sample.txt")
+                    default="project_data/downloads/TinyStoriesV2-GPT4-sample.txt")
 parser.add_argument('--test', type=str, help="test if it works",
                     default=False)
 args = parser.parse_args()
